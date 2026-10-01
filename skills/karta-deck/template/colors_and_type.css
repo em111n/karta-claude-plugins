@@ -1,0 +1,321 @@
+/* ============================================================
+   KARTA - Design System Foundations
+   Brand: Karta · Visual language based on the Pitch Pro
+   interactive-proposal template (dark editorial + acid accent).
+   Colors + Typography tokens and semantic styles.
+   Token namespace: --pp-*  (kept stable across the system).
+   Fonts: Archivo (self-hosted, fonts/archivo.woff2) + system stack
+   (SF Pro on Apple, Segoe UI on Windows, Helvetica Neue fallback).
+   ============================================================ */
+
+/* Archivo - self-hosted (variable, latin subset) */
+@font-face {
+  font-family: 'Archivo';
+  src: url('fonts/archivo.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---- Brand palette ---- */
+  --pp-acid:        #ccff00;   /* KARTA primary accent - buttons, labels, stats, links */
+  --pp-lime:        #ccff00;   /* alias of --pp-acid (template legacy name) */
+  --pp-page:        #030303;   /* page background (near-black) */
+  --pp-ink:         #010209;   /* deepest ink */
+  --pp-card:        #0d0d0d;   /* card / panel surface */
+  --pp-surface-2:   #141414;   /* raised surface, mega-menu, chip hovers */
+  --pp-line:        #2a2a2a;   /* card border (V1 · Elevated glass) */
+  --pp-hairline-c:  #111111;   /* legacy — thin hairline dividers */
+  --pp-control:     #333333;   /* control / nav-pill background */
+  --pp-slate:       #3f4146;   /* muted slate */
+
+  /* ---- Neutral text ramp (light on dark) ---- */
+  --pp-fg:          #fafafa;   /* primary text / logo */
+  --pp-fg-1:        #f1f1f1;   /* high-emphasis */
+  --pp-fg-2:        #ababab;   /* body / secondary */
+  --pp-fg-3:        #919191;   /* tertiary / captions */
+  --pp-fg-4:        #5e5e5e;   /* brackets, de-emphasized labels */
+
+  /* ---- Semantic ---- */
+  --pp-accent:        var(--pp-lime);
+  --pp-on-accent:     #030303;  /* text on lime */
+  --pp-bg:            var(--pp-page);
+  --pp-text:          var(--pp-fg);
+  --pp-text-muted:    var(--pp-fg-2);
+  --pp-border:        var(--pp-line);
+
+  /* ---- Typefaces ---- */
+  --pp-font-display: 'Archivo', system-ui, sans-serif;
+  --pp-font-body:    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --pp-font-mono:    'Archivo', ui-monospace, 'SF Mono', monospace; /* hero title uses display as "code" */
+
+  /* ---- Type scale (root 16px; matches Framer rem multipliers) ---- */
+  --pp-text-hero:   clamp(64px, 9vw, 128px);  /* hero / section H1 */
+  --pp-text-h1:     clamp(48px, 6vw, 80px);
+  --pp-text-lead:   clamp(28px, 3.4vw, 40px); /* big lead paragraphs (preset 1cz1tti) */
+  --pp-text-stat:   56px;                      /* metric numbers (3.5rem) */
+  --pp-text-h3:     24px;                       /* card titles (preset cq1skq, 1.5rem) */
+  --pp-text-body:   17px;                       /* body (Apple reading pace, premium pace) */
+  --pp-text-label:  17px;                       /* section labels [ ... ] */
+  --pp-text-small:  14px;
+
+  /* ---- Weights ---- */
+  --pp-w-regular: 400;
+  --pp-w-medium:  500;   /* dominant UI weight */
+  --pp-w-semi:    600;
+  --pp-w-bold:    700;
+
+  /* ---- Radii ---- */
+  --pp-r-micro:  4px;    /* smallest — progress bars, tooltips, micro markers */
+  --pp-r-chip:   8px;    /* inline chips, badges, chart bars, hover bg */
+  --pp-r-card:   12px;   /* cards, panels, containers (default surface radius) */
+  --pp-r-large:  24px;   /* large surfaces — hero stages, full-bleed cards */
+  --pp-r-pill:   100px;  /* pills, CTAs */
+  --pp-r-button: 4px;    /* deprecated alias of --pp-r-micro (kept for legacy callsites) */
+
+  /* ---- Spacing rhythm (8px base; section gap 80, card pad 20) ---- */
+  --pp-space-1: 5px;
+  --pp-space-2: 10px;
+  --pp-space-3: 16px;
+  --pp-space-4: 20px;   /* card padding, grid gap */
+  --pp-space-5: 40px;
+  --pp-space-6: 60px;
+  --pp-space-7: 80px;   /* section padding + gap */
+  --pp-maxw:    1040px; /* content container */
+
+  /* ---- Borders & elevation ---- */
+  --pp-hairline: 1px solid var(--pp-line);
+  --pp-shadow-none: none; /* the system is flat - depth comes from surface steps + hairlines */
+  --pp-card-bg: var(--pp-card);
+
+  /* ---- Motion ---- */
+  --pp-ease: cubic-bezier(0.44, 0, 0.16, 1); /* smooth, slightly snappy */
+  --pp-dur:  0.4s;
+}
+
+/* ============================================================
+   SEMANTIC TYPE CLASSES
+   ============================================================ */
+
+.pp-hero {
+  font-family: var(--pp-font-mono);
+  font-weight: var(--pp-w-medium);
+  font-size: var(--pp-text-hero);
+  line-height: 1.0;
+  letter-spacing: -0.028em;
+  color: var(--pp-fg);
+  text-wrap: balance;
+}
+
+.pp-h1 {
+  font-family: var(--pp-font-display);
+  font-weight: var(--pp-w-medium);
+  font-size: var(--pp-text-h1);
+  line-height: 1.05;
+  letter-spacing: -0.024em;
+  color: var(--pp-fg);
+  text-wrap: balance;
+}
+
+.pp-lead {
+  font-family: var(--pp-font-display);
+  font-weight: var(--pp-w-medium);
+  font-size: var(--pp-text-lead);
+  line-height: 1.3;
+  letter-spacing: -0.014em;
+  color: var(--pp-fg);
+  text-wrap: balance;
+}
+
+.pp-h3 {
+  font-family: var(--pp-font-display);
+  font-weight: var(--pp-w-medium);
+  font-size: var(--pp-text-h3);
+  line-height: 1.3;
+  letter-spacing: -0.014em;
+  color: var(--pp-fg);
+}
+
+.pp-stat {
+  font-family: var(--pp-font-display);
+  font-weight: var(--pp-w-medium);
+  font-size: var(--pp-text-stat);
+  line-height: 1.2;
+  color: var(--pp-lime);
+}
+
+.pp-body {
+  font-family: var(--pp-font-body);
+  font-weight: var(--pp-w-regular);
+  font-size: var(--pp-text-body);
+  line-height: 1.47;
+  letter-spacing: -0.011em;
+  color: var(--pp-fg-2);
+}
+
+.pp-role {
+  font-family: var(--pp-font-body);
+  font-weight: var(--pp-w-medium);
+  font-size: var(--pp-text-body);
+  line-height: 1.5;
+  color: var(--pp-lime);
+}
+
+/* Section label - rendered as [ label ] with dim brackets */
+.pp-label {
+  font-family: var(--pp-font-display);
+  font-weight: var(--pp-w-medium);
+  font-size: var(--pp-text-label);
+  line-height: 1.5;
+  color: var(--pp-fg-2);
+  display: inline-flex;
+  gap: 0.35em;
+}
+.pp-label::before { content: "["; color: var(--pp-fg-4); }
+.pp-label::after  { content: "]"; color: var(--pp-fg-4); }
+
+.pp-caption {
+  font-family: var(--pp-font-body);
+  font-weight: var(--pp-w-regular);
+  font-size: var(--pp-text-small);
+  line-height: 1.5;
+  color: var(--pp-fg-3);
+}
+
+/* Heading display axis - Archivo Weight 800 / Width 125% */
+.pp-hero, .pp-h1, .pp-h3, .pp-stat {
+  font-weight: 800;
+  font-stretch: 125%;
+  font-variation-settings: 'wght' 800, 'wdth' 125;
+}
+
+/* ============================================================
+   PRIMITIVES
+   ============================================================ */
+
+.pp-btn {
+  font-family: var(--pp-font-display);
+  font-weight: var(--pp-w-medium);
+  font-size: var(--pp-text-body);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border: none;
+  border-radius: var(--pp-r-pill);   /* fully rounded (pill) */
+  background: var(--pp-lime);
+  color: var(--pp-on-accent);
+  cursor: pointer;
+  transition: filter var(--pp-dur) var(--pp-ease), transform 0.15s var(--pp-ease),
+              background var(--pp-dur) var(--pp-ease), color var(--pp-dur) var(--pp-ease),
+              border-color var(--pp-dur) var(--pp-ease);
+}
+.pp-btn:hover  { background: #a6cc00; filter: none; }
+.pp-btn:active { transform: scale(0.95); }
+
+/* ---- Secondary variants (pick one) ---- */
+
+/* A · Outline acid - accent border, fills on hover */
+.pp-btn--outline {
+  background: transparent;
+  color: var(--pp-lime);
+  border: 1px solid var(--pp-lime);
+}
+.pp-btn--outline:hover { background: var(--pp-lime); color: var(--pp-on-accent); filter: none; }
+
+/* B · Outline neutral - hairline, low-key */
+.pp-btn--ghost {
+  background: transparent;
+  color: var(--pp-fg);
+  border: 1px solid #2a2a2a;
+}
+.pp-btn--ghost:hover { background: var(--pp-surface-2); border-color: #3a3a3a; filter: none; }
+
+/* C · Subtle text - minimal, link-like with a chip hit area */
+.pp-btn--subtle {
+  background: rgba(255,255,255,0.06);
+  color: var(--pp-fg);
+}
+.pp-btn--subtle:hover { background: rgba(255,255,255,0.12); filter: none; }
+
+/* size + corner modifiers */
+.pp-btn--sm     { padding: 10px 16px; font-size: var(--pp-text-small); }
+.pp-btn--lg     { padding: 17px 30px; }
+.pp-btn--square { border-radius: var(--pp-r-card); }  /* 4px corners instead of pill */
+
+.pp-card {
+  background: var(--pp-card);
+  border: var(--pp-hairline);
+  border-radius: var(--pp-r-card);
+  padding: var(--pp-space-4);
+}
+
+.pp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--pp-r-button);
+  background: var(--pp-control);
+  color: var(--pp-fg);
+  font-family: var(--pp-font-display);
+  font-weight: var(--pp-w-medium);
+  font-size: var(--pp-text-small);
+}
+
+/* ---- Pill button (secondary = charcoal, primary = accent) ----
+   Markup: <button class="pp-pill-btn"><svg class="ic" viewBox="0 0 24 24">…</svg> Label</button>
+   Icon-only round: add pp-pill-btn--icon. Accent fill: add pp-pill-btn--accent. */
+.pp-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px 24px 13px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-top-color: rgba(255, 255, 255, 0.16);
+  border-radius: var(--pp-r-pill);
+  background: linear-gradient(180deg, rgba(52, 52, 52, 0.5) 0%, rgba(38, 38, 38, 0.5) 100%);
+  color: var(--pp-fg);
+  font-family: var(--pp-font-body);
+  font-weight: var(--pp-w-medium);
+  font-size: 19px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 2px 6px rgba(0, 0, 0, 0.35);
+  transition: filter var(--pp-dur) var(--pp-ease), transform var(--pp-dur) var(--pp-ease);
+}
+.pp-pill-btn:hover { filter: brightness(1.12); }
+.pp-pill-btn:active {
+  transform: scale(0.93);
+  filter: brightness(0.82);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) inset, 0 1px 2px rgba(0, 0, 0, 0.3);
+  transition-duration: 0.08s;
+}
+.pp-pill-btn .ic { flex: none; width: 24px; height: 24px; display: block; }
+.pp-pill-btn .disc { fill: var(--pp-fg); }
+.pp-pill-btn .glyph { stroke: #1a1a1a; }
+.pp-pill-btn .glyph-fill { fill: #1a1a1a; }
+.pp-pill-btn--sm { padding: 8px 16px 8px 9px; gap: 8px; font-size: 15px; }
+.pp-pill-btn--sm .ic { width: 18px; height: 18px; }
+.pp-pill-btn--lg { padding: 17px 30px 17px 18px; gap: 13px; font-size: 23px; }
+.pp-pill-btn--lg .ic { width: 30px; height: 30px; }
+.pp-pill-btn--icon { padding: 13px; gap: 0; }
+.pp-pill-btn--icon.pp-pill-btn--sm { padding: 9px; }
+.pp-pill-btn--icon.pp-pill-btn--lg { padding: 17px; }
+.pp-pill-btn--accent {
+  background: linear-gradient(180deg, var(--pp-lime) 0%, #bce000 100%);
+  color: var(--pp-on-accent);
+  border-top-color: rgba(255, 255, 255, 0.4);
+}
+.pp-pill-btn--accent .disc { fill: #0a0a0a; }
+.pp-pill-btn--accent .glyph { stroke: var(--pp-lime); }
+.pp-pill-btn--accent .glyph-fill { fill: var(--pp-lime); }
+.pp-pill-btn--outline .disc { fill: none; stroke: var(--pp-fg-2); stroke-width: 1.5; }
+.pp-pill-btn--outline .glyph { stroke: var(--pp-fg); }
+.pp-pill-btn--outline .glyph-fill { fill: var(--pp-fg); }

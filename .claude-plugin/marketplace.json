@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
+  "name": "karta",
+  "owner": { "name": "Karta Design" },
+  "description": "Karta Claude Code plugins — build on-brand Karta presentation decks (demo & pitch) in the Karta visual language.",
+  "plugins": [
+    {
+      "name": "karta-deck",
+      "source": "./",
+      "description": "Build presentation decks in the Karta visual language — black + acid, sticky-recede section heroes, interactive Lightbox / video-carousel / Figma-proto components. Ships the design system, reusable primitives, section patterns and a runnable template.",
+      "version": "0.1.0",
+      "author": { "name": "Karta Design" },
+      "keywords": ["presentation", "deck", "karta", "design-system", "slides"]
+    }
+  ]
+}

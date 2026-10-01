@@ -1,0 +1,9 @@
+{
+  "name": "karta-deck",
+  "version": "0.1.0",
+  "description": "Build presentation decks in the Karta visual language — black + acid, sticky-recede section heroes, interactive Lightbox / video-carousel / Figma-proto components.",
+  "author": {
+    "name": "Karta Design"
+  },
+  "keywords": ["presentation", "deck", "karta", "design-system", "slides"]
+}
