@@ -7,21 +7,30 @@ description: Build presentation decks in the Karta visual language — black bac
 
 Single-page decks rendered as long-scroll HTML. No bundler — Babel-standalone compiles JSX in the browser at load time. Each section is a full-viewport block with a sticky "recede" hero and a body that scrolls up underneath.
 
-Live examples in the wild: `karta-invest-pitch-deck/`, `karta-demo-day/`, `karta-demo-day-jul/`.
+Live: **demo.karta.io** (monthly demo days, open) and **doc.karta.io** (investor & partnership pitch decks, password-protected). Sources live in the org repos `karta.demo` and `karta.design`; as decks grow, content is split into `sections-a.jsx` / `sections-b.jsx` / `sections-c.jsx`.
 
 ## Starting a new deck
 
-1. Copy the four files in `template/` to a new folder — that's the minimum runnable deck.
-2. Serve with any static file server (`python3 -m http.server 8942` is enough for local, GitHub Pages for prod).
-3. Author new sections in your own `sections.jsx` (or split into `sections-a.jsx`, `sections-b.jsx` when it grows). Register each section in the `SECTIONS` array so the menu picks them up.
+1. Copy the files in `template/` to a new folder — that's the minimum runnable deck.
+2. Serve with any static file server for local preview (`python3 -m http.server 8942`). You never need GitHub to author or preview.
+3. Author new sections in your own `sections.jsx` (or split into `sections-a.jsx`, `sections-b.jsx`, `sections-c.jsx` as it grows). Register each section in the `SECTIONS` array so the menu picks them up.
 4. Every time you edit a `.jsx` / `.css` file, bump the `?v=NN` cache-buster in `index.html` — otherwise Babel serves stale code.
+
+## Publishing (hand-off)
+
+You do **not** need GitHub access to make a deck. Author and preview locally, then hand the deck to the deck maintainer as a **zip archive** — they merge it into the right repo and deploy:
+
+- **Demo** decks → `karta.demo` → **demo.karta.io** (open).
+- **Pitch** / investor decks → `karta.design` → **doc.karta.io** (password-protected; encryption + deploy are applied by the maintainer, not in the deck).
+
+To package, ask Claude Code to zip the deck folder (runtime files + `assets/`). Don't add passwords or deploy config to the deck itself.
 
 ## What's in this skill
 
 - `references/design-tokens.md` — colours, typography, spacing, motion. **Read first** before touching styles.
 - `references/primitives.md` — every reusable component that ships with the deck (StatBlock, ColBlock, BulletList, Funnel, SectionHero, Section, Reveal, Lightbox, VidThumb). Signatures + when to use each.
 - `references/section-patterns.md` — the recurring shapes: stats row, two-column narrative, product-design click-through, video-ads carousel, before/after table, comparison funnel.
-- `references/setup.md` — the boring bits: index.html gotchas, cache busting, hash scrolling, GitHub Pages deploy, running the preview locally.
+- `references/setup.md` — the boring bits: index.html gotchas, cache busting, hash scrolling, running the preview locally.
 - `template/` — a runnable minimum deck. Copy the folder verbatim to start; do not edit these template files in place.
 
 ## Ground rules
@@ -35,7 +44,7 @@ Live examples in the wild: `karta-invest-pitch-deck/`, `karta-demo-day/`, `karta
 
 ## Anti-patterns to reject
 
-- Adding a build step (Vite, Next, Webpack). The deck is designed to run on GitHub Pages with no toolchain — do not "modernise" it.
+- Adding a build step (Vite, Next, Webpack). The deck runs on any static host with no toolchain — do not "modernise" it.
 - Emojis in body copy or headings. Kickers, section labels, KPI subs — all plain text.
 - New fonts. Archivo covers display, body, and mono via CSS variables.
 - Loose colours (`#e0e0e0`, `rgba(255,0,0,.3)`) inside components. Every colour lives in `colors_and_type.css`; components read the token.
