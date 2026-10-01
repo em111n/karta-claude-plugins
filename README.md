@@ -13,8 +13,15 @@ In Claude Code:
 
 Then just ask Claude Code to build a deck — e.g. *"Сделай Karta-деку, моя секция — про рост выручки в Q3"*. The `karta-deck` skill carries the Karta design system, reusable components, section patterns and a runnable template, so you can author a deck locally with no other setup. No GitHub access required to author.
 
+## Commands
+
+- `/new-deck [тема]` — scaffold a new Karta deck from the template and start authoring.
+- `/deck-preview` — serve the current deck locally and show screenshots.
+- `/deck-package` — zip the current deck for hand-off to the maintainer.
+
 ## What's inside
 
 - `skills/karta-deck/` — the skill: `SKILL.md`, `references/` (design tokens, primitives, section patterns, setup), and a runnable `template/`.
+- `commands/` — the slash commands above.
 
 Publishing a finished deck (hosting on `demo.karta.io` / `doc.karta.io`) is handled by the deck maintainer — hand off your deck as a zip archive.
